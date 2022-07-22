@@ -50,8 +50,6 @@ Plug 'ellisonleao/gruvbox.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
-Plug 'hashivim/vim-terraform'
-
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
@@ -73,5 +71,11 @@ if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 	let g:airline_symbols.maxlinenr = ''
 endif
+
+" set Jenkinsfile type to groovy
+augroup set_jenkins_groovy
+au!
+au BufNewFile,BufRead *.jenkinsfile,*.Jenkinsfile,Jenkinsfile,jenkinsfile setf groovy
+augroup END
 
 lua require'lsp-config'
