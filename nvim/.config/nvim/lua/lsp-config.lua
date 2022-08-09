@@ -126,6 +126,14 @@ nvim_lsp['groovyls'].setup {
     }
 }
 
+-- terraformls setup specific command
+nvim_lsp['terraformls'].setup {
+	cmd = { "terraform-ls", "serve" },
+    capabilities = capabilities,
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150,
+    }
 }
 
 -- go setup
