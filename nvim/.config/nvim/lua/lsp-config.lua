@@ -105,7 +105,7 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'pylsp', 'bashls', 'groovyls' }
+local servers = { 'pylsp', 'bashls' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     capabilities = capabilities,
@@ -119,6 +119,13 @@ end
 -- groovyls setup specific command
 nvim_lsp['groovyls'].setup {
 	cmd = { "java", "-jar", "/home/kostas.antonopoulos/.groovy-lsp/groovy-language-server-all.jar" },
+    capabilities = capabilities,
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150,
+    }
+}
+
 }
 
 -- go setup
