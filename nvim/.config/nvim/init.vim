@@ -52,6 +52,8 @@ Plug 'nvim-telescope/telescope.nvim'
 
 Plug 'hashivim/vim-terraform'
 
+Plug 'Glench/Vim-Jinja2-Syntax'
+
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
