@@ -1,22 +1,43 @@
-vim.opt.cursorline = true
-vim.opt.cursorcolumn = true
-vim.opt.number = true
-vim.opt.relativenumber = true
+-- [[ Setting options ]]
+-- See `:help vim.o`
 
-vim.opt.shiftwidth = 4
-vim.opt.tabstop = 4
-vim.opt.expandtab = false
-vim.opt.softtabstop = 0
+-- Highlight line and column of cursor
+--vim.wo.cursorline = true
+--vim.wo.cursorcolumn = true
 
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.hlsearch = false
+-- Make line numbers default
+vim.wo.number = true
+vim.wo.relativenumber = true
 
-vim.opt.wrap = true
-vim.opt.linebreak = true
+-- tabs
+vim.o.shiftwidth = 4
+vim.o.tabstop = 4
 
-vim.opt.showmode = false
-vim.opt.wildmenu = true
-vim.opt.wildmode = "list:longest"
+-- Case insensitive searching UNLESS /C or capital in search
+vim.o.ignorecase = true
+vim.o.smartcase = true
+-- Set highlight on search
+vim.o.hlsearch = false
 
---vim.opt.mouse = ""
+-- number of lines to keep when navigating close to edges
+vim.o.scrolloff = 8
+
+-- Enable mouse mode
+vim.o.mouse = 'a'
+
+-- Enable break indent
+vim.o.breakindent = true
+
+-- Set completeopt to have a better completion experience
+vim.o.completeopt = 'menuone,noselect'
+
+-- [[ Highlight on yank ]]
+-- See `:help vim.highlight.on_yank()`
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = highlight_group,
+  pattern = '*',
+})
