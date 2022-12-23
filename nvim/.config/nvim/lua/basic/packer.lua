@@ -42,9 +42,7 @@ return require('packer').startup(function(use)
   use 'nvim-lualine/lualine.nvim' -- status line
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
 
-  -- themes
-  use 'folke/tokyonight.nvim'
-  use 'ellisonleao/gruvbox.nvim'
+  -- theme
   use 'navarasu/onedark.nvim'
 
   -- Fuzzy Finder (files, lsp, etc)
