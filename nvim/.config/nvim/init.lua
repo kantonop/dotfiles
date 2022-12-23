@@ -1,1 +1,1 @@
-require("basic-conf")
+require("basic")

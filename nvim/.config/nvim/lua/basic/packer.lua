@@ -45,6 +45,7 @@ return require('packer').startup(function(use)
   -- themes
   use 'folke/tokyonight.nvim'
   use 'ellisonleao/gruvbox.nvim'
+  use 'navarasu/onedark.nvim'
 
   -- Fuzzy Finder (files, lsp, etc)
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim', 'nvim-tree/nvim-web-devicons' } }

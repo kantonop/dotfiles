@@ -1,9 +1,16 @@
+-- Set colors
+vim.o.termguicolors = true
+vim.o.background = "dark"
+
+local scheme = "onedark"
+vim.cmd.colorscheme(scheme)
+
 -- Set lualine as statusline
 -- See `:help lualine.txt`
 require('lualine').setup {
   options = {
     icons_enabled = true,
-    theme = 'gruvbox',
+    theme = scheme,
     component_separators = { left = '', right = ''},
     section_separators = { left = '', right = ''},
     disabled_filetypes = {
