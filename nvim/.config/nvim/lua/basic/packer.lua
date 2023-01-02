@@ -40,7 +40,9 @@ return require('packer').startup(function(use)
 
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   use 'nvim-lualine/lualine.nvim' -- status line
+  use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
+  use 'm4xshen/autoclose.nvim' -- Autoclose parentheses and quotes
 
   -- theme
   use 'navarasu/onedark.nvim'

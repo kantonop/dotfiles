@@ -30,6 +30,7 @@ vim.o.breakindent = true
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
+vim.o.wildmode = 'longest:full'
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`

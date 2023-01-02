@@ -22,14 +22,7 @@ vim.keymap.set({ 'n', 'v' }, '<leader>fp', ':!black %<CR>', { silent = true, des
 
 -- open explore
 vim.keymap.set('n', '<leader>ef', vim.cmd.Ex, { desc = '[E]xplore [F]iles' })
--- pane navigation
---vim.keymap.set("n", "<C-j>", ":wincmd j<CR>", {silent = true})
---vim.keymap.set("n", "<C-k>", ":wincmd k<CR>", {silent = true})
---vim.keymap.set("n", "<C-l>", ":wincmd l<CR>", {silent = true})
---vim.keymap.set("n", "<C-h>", ":wincmd h<CR>", {silent = true})
 
--- pane resizing
---vim.keymap.set("n", "<leader><C-+>", ":resize -5<CR>", {silent = true})
---vim.keymap.set("n", "<leader><C-->", ":resize +5<CR>", {silent = true})
---vim.keymap.set("n", "<leader>+", ":vertical resize +5<CR>", {silent = true})
---vim.keymap.set("n", "<leader>-", ":vertical resize -5<CR>", {silent = true})
+-- copy to and from clipboard
+vim.keymap.set({'n', 'v'}, '<leader>y', '"+y', {desc = '[Y]ank to Clipboard Register'})
+vim.keymap.set({'n', 'v'}, '<leader>p', '"+p', {desc = '[P]aste from Clipboard Register'})
