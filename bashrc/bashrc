@@ -8,8 +8,8 @@ if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
 fi
 if [ -f "$HOME/.bash-git-prompt/prompt-colors.sh" ]; then
     source $HOME/.bash-git-prompt/prompt-colors.sh
-    MYPROMPT="${White}\A${ResetColor} ${DimYellow}\\u${White}@${DimRed}\\h ${DimGreen}\w${ResetColor}${BoldWhite}\n$ ${ResetColor}"
+    MYPROMPT="${White}\A${ResetColor} ${DimYellow}\\u${White}@${DimRed}\\h ${DimGreen}\w${ResetColor}\n$ "
 else
-    MYPROMPT="\[\033[0;37m\]\A\[\033[0;0m\] \[\033[2;33m\]\u\[\033[0;37m\]@\[\033[2;31m\]\h \[\033[2;32m\]\w\[\033[0;0m\]\[\033[1;37m\]\n$ \[\033[0;0m\]"
+    MYPROMPT="\[\033[0;37m\]\A\[\033[0;0m\] \[\033[2;33m\]\u\[\033[0;37m\]@\[\033[2;31m\]\h \[\033[2;32m\]\w\[\033[0;0m\]\n$ "
 fi
 export PS1=$MYPROMPT
