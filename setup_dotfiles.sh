@@ -6,6 +6,7 @@ function make_source() {
 		echo "$1 is already being sourced"
 		;;
 	  1)
+		echo "adding source for $1"
 		echo "" >> $HOME/.bashrc
 		echo "[[ -f $HOME/$1 ]] && source $HOME/$1" >> $HOME/.bashrc
 		;;
