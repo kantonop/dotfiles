@@ -57,6 +57,8 @@ local servers = {
 
   pyright = {},
 
+  terraformls = {},
+
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },

@@ -45,7 +45,7 @@ return require('packer').startup(function(use)
   use 'm4xshen/autoclose.nvim' -- Autoclose parentheses and quotes
 
   -- theme
-  use 'navarasu/onedark.nvim'
+  use 'folke/tokyonight.nvim'
 
   -- Fuzzy Finder (files, lsp, etc)
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim', 'nvim-tree/nvim-web-devicons' } }
