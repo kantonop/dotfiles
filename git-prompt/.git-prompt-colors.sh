@@ -9,19 +9,19 @@ override_git_prompt_colors() {
   PathShort="\w";
 
   ## These are the color definitions used by gitprompt.sh
-  GIT_PROMPT_PREFIX="["                 # start of the git info string
+  GIT_PROMPT_PREFIX="on ["              # start of the git info string
   GIT_PROMPT_SUFFIX="]"                 # the end of the git info string
   GIT_PROMPT_SEPARATOR="|"              # separates each item
 
-  GIT_PROMPT_BRANCH="${Magenta}"        # the git branch that is active in the current directory
+  GIT_PROMPT_BRANCH="${Yellow}"         # the git branch that is active in the current directory
   GIT_PROMPT_MASTER_BRANCH="${GIT_PROMPT_BRANCH}" # used if the git branch that is active in the current directory is $GIT_PROMPT_MASTER_BRANCHES
   GIT_PROMPT_STAGED="${Red}●"           # the number of staged files/directories
-  GIT_PROMPT_CONFLICTS="${Red}✖ "       # the number of files in conflict
-  GIT_PROMPT_CHANGED="${Blue}✚ "        # the number of changed files
+  GIT_PROMPT_CONFLICTS="${BoldRed}✖"    # the number of files in conflict
+  GIT_PROMPT_CHANGED="${Blue}✚"         # the number of changed files
 
   GIT_PROMPT_REMOTE=" "                 # the remote branch name (if any) and the symbols for ahead and behind
   GIT_PROMPT_UNTRACKED="${Cyan}…"       # the number of untracked files/dirs
-  GIT_PROMPT_STASHED="${BoldBlue}⚑ "    # the number of stashed files/dir
+  GIT_PROMPT_STASHED="${BoldBlue}⚑"     # the number of stashed files/dir
   GIT_PROMPT_CLEAN="${BoldGreen}✔"      # a colored flag indicating a "clean" repo
 
   ## For the command indicator, the placeholder _LAST_COMMAND_STATE_
@@ -45,7 +45,7 @@ override_git_prompt_colors() {
 
   ## _LAST_COMMAND_INDICATOR_ will be replaced by the appropriate GIT_PROMPT_COMMAND_OK OR GIT_PROMPT_COMMAND_FAIL
   #GIT_PROMPT_START_USER="${Yellow}${PathShort}${ResetColor}"
-  GIT_PROMPT_START_USER="${White}${Time12a}${ResetColor} ${DimYellow}\\u${White}@${DimRed}\\h ${DimGreen}${PathShort}${ResetColor}"
+  GIT_PROMPT_START_USER="${White}${Time12a}${ResetColor}$(gen_prompt_kube_ctx) ${Magenta}\\u${White} in ${BrightGreen}${PathShort}${ResetColor}"
   GIT_PROMPT_START_ROOT="${GIT_PROMPT_START_USER}"
   GIT_PROMPT_END_USER="\n$ "
   GIT_PROMPT_END_ROOT="\n# "
@@ -60,7 +60,7 @@ override_git_prompt_colors() {
   # To specify multiple branches, use
   #   shopt -s extglob
   #   GIT_PROMPT_MASTER_BRANCHES='@(master|production)'
-  GIT_PROMPT_MASTER_BRANCHES="master"
+  GIT_PROMPT_MASTER_BRANCHES="@(master|main)"
 }
 
 reload_git_prompt_colors "Custom"
