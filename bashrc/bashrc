@@ -3,6 +3,8 @@ alias ls='ls --color'
 alias l='ls'
 alias ll='ls -al'
 
+export PATH="/opt/homebrew/bin:$PATH"
+
 # git autocomplete
 # curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
 # chmod u+x ~/.git-completion.bash
@@ -18,46 +20,29 @@ source <(kubectl completion bash)
 alias k=kubectl
 complete -o default -F __start_kubectl k
 
+[[ -f /opt/homebrew/opt/kube-ps1/share/kube-ps1.sh ]] && . /opt/homebrew/opt/kube-ps1/share/kube-ps1.sh
+KUBE_PS1_SYMBOL_ENABLE=false
+KUBE_PS1_NS_ENABLE=false
+KUBE_PS1_CTX_COLOR=cyan
+
 # kubectl-krew plugins
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 alias ctx='kubectl-ctx'
 alias ns='kubectl-ns'
 
-# helper function to capture current kube ctx
-# in a string suitable for prompt
-function gen_prompt_kube_ctx {
-    if ! command -v kubectl &> /dev/null
-    then
-        echo ""
-        return 0
-    fi
-    
-    ctx=$(kubectl config current-context 2> /dev/null)
-    if [[ $? -ne 0 ]]
-    then
-        echo ""
-        return 0
-    fi
-
-    #            Cyan               ResetColor
-    echo " (\[\033[0;36m\]${ctx}\[\033[0;0m\])"
-}
-
-# prompt (including in git repo)
+# prompt inside a git repo
 # git clone https://github.com/magicmonty/bash-git-prompt.git ~/.bash-git-prompt --depth=1
 if [[ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]]; then
     GIT_PROMPT_ONLY_IN_REPO=1
     GIT_PROMPT_THEME=Custom
     source $HOME/.bash-git-prompt/gitprompt.sh
 fi
-if [[ -f "$HOME/.bash-git-prompt/prompt-colors.sh" ]]; then
-    source $HOME/.bash-git-prompt/prompt-colors.sh
-    MYPROMPT="${White}\A${ResetColor}$(gen_prompt_kube_ctx) ${Magenta}\\u${White} in ${BrightGreen}\w${ResetColor}\n$ "
-else
-    MYPROMPT="\[\033[0;37m\]\A\[\033[0;0m\]$(gen_prompt_kube_ctx) \[\033[0;33m\]\u\[\033[0;37m\] in \[\033[0;32m\]\w\[\033[0;0m\]\n$ "
-fi
-export PS1=$MYPROMPT
+
+# prompt outside of git repo
+PS1='$(kube_ps1) \[\033[0;35m\]\u\[\033[0;37m\] in \[\033[1;32m\]\w\[\033[0;0m\]\n$ '
 
 # fuzzy find: https://github.com/junegunn/fzf
+[[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
 # ripgrep   : https://github.com/BurntSushi/ripgrep
 # autojump  : https://github.com/wting/autojump
+[[ -f /opt/homebrew/etc/profile.d/autojump.sh ]] && . /opt/homebrew/etc/profile.d/autojump.sh
