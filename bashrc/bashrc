@@ -5,36 +5,61 @@ alias ll='ls -al'
 
 export PATH="/opt/homebrew/bin:$PATH"
 
-# git autocomplete
+# setup bash completion
+if [[ -r /opt/homebrew/etc/profile.d/bash_completion.sh ]]; then
+    source /opt/homebrew/etc/profile.d/bash_completion.sh
+fi
+
+# git completion
 # curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
 # chmod u+x ~/.git-completion.bash
-if [[ -f "$HOME/.git-completion.bash" ]]; then
+if [[ -f $HOME/.git-completion.bash ]]; then
     source $HOME/.git-completion.bash
 fi
 
-# setup bash completion
-[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+# docker completion
+# curl https://raw.githubusercontent.com/docker/docker-ce/master/components/cli/contrib/completion/bash/docker -o ~/.docker-completion.bash
+if [[ -f $HOME/.docker-completion.bash ]]; then
+    source $HOME/.docker-completion.bash
+fi
+
+# aws cli completion
+if [[ -f /usr/local/bin/aws_completer ]]; then
+    complete -C /usr/local/bin/aws_completer aws
+fi
 
 # kubectl completion
-source <(kubectl completion bash)
-alias k=kubectl
-complete -o default -F __start_kubectl k
+if command -v kubectl &> /dev/null; then
+    source <(kubectl completion bash)
+    alias k=kubectl
+    complete -o default -F __start_kubectl k
 
-[[ -f /opt/homebrew/opt/kube-ps1/share/kube-ps1.sh ]] && . /opt/homebrew/opt/kube-ps1/share/kube-ps1.sh
-KUBE_PS1_SYMBOL_ENABLE=false
-KUBE_PS1_NS_ENABLE=false
-KUBE_PS1_CTX_COLOR=cyan
+    # kubectl-krew plugins
+    export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+    alias ctx='kubectl-ctx'
+    alias ns='kubectl-ns'
+fi
 
-# kubectl-krew plugins
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-alias ctx='kubectl-ctx'
-alias ns='kubectl-ns'
+if [[ -f /opt/homebrew/opt/kube-ps1/share/kube-ps1.sh ]]; then
+    source /opt/homebrew/opt/kube-ps1/share/kube-ps1.sh
+    KUBE_PS1_SYMBOL_ENABLE=false
+    KUBE_PS1_NS_ENABLE=false
+    KUBE_PS1_CTX_COLOR=cyan
+fi 
 
 # prompt inside a git repo
 # git clone https://github.com/magicmonty/bash-git-prompt.git ~/.bash-git-prompt --depth=1
 if [[ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]]; then
     GIT_PROMPT_ONLY_IN_REPO=1
     GIT_PROMPT_THEME=Custom
+    # GIT_PROMPT_THEME=Solarized
+    # GIT_PROMPT_THEME=Single_line_Solarized
+    # GIT_PROMPT_THEME=Single_line_Solarized_Lamda
+    # GIT_PROMPT_THEME=Solarized_Extravagant
+    # GIT_PROMPT_THEME=Solarized_NoExitState
+    # GIT_PROMPT_THEME=Solarized_NoExitState_Ubuntu
+    # GIT_PROMPT_THEME=Solarized_Ubuntu
+    # GIT_PROMPT_THEME=Solarized_UserHost
     source $HOME/.bash-git-prompt/gitprompt.sh
 fi
 
@@ -42,7 +67,17 @@ fi
 PS1='$(kube_ps1) \[\033[0;35m\]\u\[\033[0;37m\] in \[\033[1;32m\]\w\[\033[0;0m\]\n$ '
 
 # fuzzy find: https://github.com/junegunn/fzf
-[[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
-# ripgrep   : https://github.com/BurntSushi/ripgrep
-# autojump  : https://github.com/wting/autojump
-[[ -f /opt/homebrew/etc/profile.d/autojump.sh ]] && . /opt/homebrew/etc/profile.d/autojump.sh
+if [[ -f $HOME/.fzf.bash ]]; then
+    source $HOME/.fzf.bash
+fi
+# ripgrep: https://github.com/BurntSushi/ripgrep
+if [[ -f $HOME/.ripgreprc ]]; then
+    export RIPGREP_CONFIG_PATH="${HOME}/.ripgreprc"
+fi
+# autojump: https://github.com/wting/autojump
+if [[ -f /opt/homebrew/etc/profile.d/autojump.sh ]]; then
+    source /opt/homebrew/etc/profile.d/autojump.sh
+fi
+
+GPG_TTY=$(tty)
+export GPG_TTY
