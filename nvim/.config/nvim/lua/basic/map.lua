@@ -26,3 +26,9 @@ vim.keymap.set('n', '<leader>ef', vim.cmd.Ex, { desc = '[E]xplore [F]iles' })
 -- copy to and from clipboard
 vim.keymap.set({'n', 'v'}, '<leader>y', '"+y', {desc = '[Y]ank to Clipboard Register'})
 vim.keymap.set({'n', 'v'}, '<leader>p', '"+p', {desc = '[P]aste from Clipboard Register'})
+
+-- Diagnostics are built into Neovim, independent of Treesitter or an attached LSP.
+vim.keymap.set('n', '[d', function() vim.diagnostic.jump { count = -1, float = false } end, { desc = 'Previous diagnostic' })
+vim.keymap.set('n', ']d', function() vim.diagnostic.jump { count = 1, float = false } end, { desc = 'Next diagnostic' })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Diagnostics to location list' })
