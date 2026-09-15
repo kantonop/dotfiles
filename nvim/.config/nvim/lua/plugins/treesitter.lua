@@ -8,9 +8,9 @@ return {
       local treesitter = require('nvim-treesitter')
       treesitter.setup {}
       treesitter.install {
-        'bash', 'dockerfile', 'go', 'gomod', 'gotmpl', 'hcl', 'helm', 'jinja',
-        'jinja_inline', 'json', 'lua', 'make', 'markdown', 'markdown_inline',
-        'python', 'terraform', 'yaml',
+        'bash', 'dockerfile', 'git_config', 'go', 'gomod', 'gotmpl', 'hcl',
+        'helm', 'jinja', 'jinja_inline', 'json', 'lua', 'make', 'markdown',
+        'markdown_inline', 'python', 'terraform', 'yaml',
       }
 
       -- main retains separate HCL and Terraform parsers; aliases need registering.
