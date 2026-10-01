@@ -22,7 +22,7 @@ require('lazy').setup {
   spec = { { import = 'plugins' } },
   -- Resolve Stow symlinks so updates keep the lockfile in the repository.
   lockfile = vim.fn.resolve(vim.fn.stdpath('config')) .. '/lazy-lock.json',
-  install = { colorscheme = { 'tokyonight' } },
+  install = { colorscheme = { 'catppuccin-mocha' } },
   -- These plugins do not need LuaRocks or a separate Lua installation.
   rocks = { enabled = false },
   checker = { enabled = false },

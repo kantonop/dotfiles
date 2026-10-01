@@ -1,15 +1,27 @@
 return {
   {
-    'folke/tokyonight.nvim',
+    'catppuccin/nvim',
+    name = 'catppuccin',
     lazy = false,
     priority = 1000,
-    config = function()
-      vim.cmd.colorscheme('tokyonight-night')
-    end,
-    keys = {
-      { '<leader>d', '<cmd>colorscheme tokyonight-night<CR>', mode = { 'n', 'v' }, desc = 'Use [d]ark colorscheme (tokyonight-night)' },
-      { '<leader>l', '<cmd>colorscheme tokyonight-day<CR>', mode = { 'n', 'v' }, desc = 'Use [l]ight colorscheme (tokyonight-day)' },
+    opts = {
+      flavour = 'mocha',
+      background = {
+        dark = 'mocha',
+      },
+      integrations = {
+        cmp = true,
+        gitsigns = true,
+        indent_blankline = { enabled = true },
+        mason = true,
+        neogit = true,
+        telescope = { enabled = true },
+      },
     },
+    config = function(_, opts)
+      require('catppuccin').setup(opts)
+      vim.cmd.colorscheme('catppuccin-mocha')
+    end,
   },
   {
     'nvim-tree/nvim-web-devicons',
@@ -26,7 +38,11 @@ return {
     'nvim-lualine/lualine.nvim',
     event = 'VeryLazy',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
-    opts = {},
+    opts = {
+      options = {
+        theme = 'catppuccin',
+      },
+    },
   },
   {
     'lukas-reineke/indent-blankline.nvim',
