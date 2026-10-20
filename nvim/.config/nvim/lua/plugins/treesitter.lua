@@ -8,9 +8,28 @@ return {
       local treesitter = require('nvim-treesitter')
       treesitter.setup {}
       treesitter.install {
-        'bash', 'dockerfile', 'git_config', 'go', 'gomod', 'gotmpl', 'hcl',
-        'helm', 'jinja', 'jinja_inline', 'json', 'lua', 'make', 'markdown',
-        'markdown_inline', 'python', 'terraform', 'yaml',
+        'bash',
+        'dockerfile',
+        'git_config',
+        'go',
+        'gomod',
+        'gotmpl',
+        'hcl',
+        'helm',
+        'jinja',
+        'jinja_inline',
+        'json',
+        'lua',
+        'make',
+        'markdown',
+        'markdown_inline',
+        'python',
+        'sql',
+        'terraform',
+        'toml',
+        'vim',
+        'vimdoc',
+        'yaml',
       }
 
       -- main retains separate HCL and Terraform parsers; aliases need registering.
@@ -29,35 +48,6 @@ return {
           end
         end,
       })
-    end,
-  },
-  {
-    'nvim-treesitter/nvim-treesitter-textobjects',
-    branch = 'main',
-    lazy = false,
-    dependencies = { 'nvim-treesitter/nvim-treesitter' },
-    init = function()
-      -- Upstream recommendation: ftplugin-local motions would shadow these maps.
-      vim.g.no_plugin_maps = true
-    end,
-    config = function()
-      require('nvim-treesitter-textobjects').setup {
-        select = { lookahead = true },
-        move = { set_jumps = true },
-      }
-
-      for key, capture in pairs {
-        aa = '@parameter.outer',
-        ia = '@parameter.inner',
-        af = '@function.outer',
-        ['if'] = '@function.inner',
-        ac = '@class.outer',
-        ic = '@class.inner',
-      } do
-        vim.keymap.set({ 'x', 'o' }, key, function()
-          require('nvim-treesitter-textobjects.select').select_textobject(capture, 'textobjects')
-        end, { desc = 'Select ' .. capture })
-      end
     end,
   },
 }
