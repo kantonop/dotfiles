@@ -29,7 +29,7 @@ vim.o.mouse = 'a'
 vim.o.breakindent = true
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+vim.opt.completeopt = "fuzzy,menu,menuone,noselect,popup"
 vim.o.wildmode = 'longest:full'
 
 -- [[ Highlight on yank ]]

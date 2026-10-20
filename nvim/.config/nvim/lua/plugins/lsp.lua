@@ -1,8 +1,6 @@
 require('mason').setup {}
 require('fidget').setup {}
 
-require('lazydev').setup {}
-
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', { clear = true }),
   callback = function(event)
@@ -29,14 +27,10 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   end,
 })
 
-vim.lsp.config('*', {
-  capabilities = require('cmp_nvim_lsp').default_capabilities(),
-})
 local servers = {
   gopls = {
     -- gopls expects its settings under this namespace.
     gopls = {
-      experimentalPostfixCompletions = true,
       analyses = { unusedparams = true, shadow = true },
       staticcheck = true,
     },

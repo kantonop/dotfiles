@@ -49,12 +49,6 @@ local plugins = {
   { src = 'https://github.com/tpope/vim-sleuth',                         name = 'vim-sleuth',                version = 'master' },
   { src = 'https://github.com/pearofducks/ansible-vim',                  name = 'ansible-vim',               version = 'master' },
   { src = 'https://github.com/qvalentin/helm-ls.nvim',                   name = 'helm-ls.nvim',              version = 'main' },
-  { src = 'https://github.com/hrsh7th/cmp-nvim-lsp',                     name = 'cmp-nvim-lsp',              version = 'main' },
-  { src = 'https://github.com/rafamadriz/friendly-snippets',             name = 'friendly-snippets',         version = 'main' },
-  { src = 'https://github.com/L3MON4D3/LuaSnip',                         name = 'LuaSnip',                   version = 'master' },
-  { src = 'https://github.com/saadparwaiz1/cmp_luasnip',                 name = 'cmp_luasnip',               version = 'master' },
-  { src = 'https://github.com/hrsh7th/nvim-cmp',                         name = 'nvim-cmp',                  version = 'main' },
-  { src = 'https://github.com/folke/lazydev.nvim',                       name = 'lazydev.nvim',              version = 'main' },
   { src = 'https://github.com/mason-org/mason.nvim',                     name = 'mason.nvim',                version = 'main' },
   { src = 'https://github.com/mason-org/mason-lspconfig.nvim',           name = 'mason-lspconfig.nvim',      version = 'main' },
   { src = 'https://github.com/j-hui/fidget.nvim',                        name = 'fidget.nvim',               version = 'main' },
@@ -102,7 +96,6 @@ require('plugins.ui')
 require('plugins.treesitter')
 require('plugins.infrastructure')
 require('plugins.editor')
-require('plugins.completion')
 require('plugins.lsp')
 require('plugins.telescope')
 require('plugins.git')

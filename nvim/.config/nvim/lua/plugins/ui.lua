@@ -4,7 +4,6 @@ local opts = {
     dark = 'mocha',
   },
   integrations = {
-    cmp = true,
     gitsigns = true,
     indent_blankline = { enabled = true },
     mason = true,
