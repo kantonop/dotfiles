@@ -17,9 +17,6 @@ vim.keymap.set({ 'n', 'v' }, 'N', 'Nzz', { desc = '[N] previous search and cente
 vim.keymap.set({ 'n', 'v' }, '<C-d>', '<C-d>zz', { desc = 'half page down and center' })
 vim.keymap.set({ 'n', 'v' }, '<C-u>', '<C-u>zz', { desc = 'half page up and center' })
 
--- black python formatter
-vim.keymap.set({ 'n', 'v' }, '<leader>fp', ':!black %<CR>', { silent = true, desc = '[F]ormat [P]ython File' })
-
 -- open explore
 vim.keymap.set('n', '<leader>ef', vim.cmd.Ex, { desc = '[E]xplore [F]iles' })
 
